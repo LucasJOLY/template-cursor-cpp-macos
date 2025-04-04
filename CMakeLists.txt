@@ -28,41 +28,33 @@ set(TESTS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 #######################################################
 # Partie à mettre à jour manuellement
 # Liste des fichiers sources des modules des exercices
-set(PROJECT_FILES
-        ${SRC_DIR}/exo1.cppm
-)
-# Liste des fichiers sources des tests unitaires
-set(TEST_FILES
-        ${TESTS_DIR}/exo1.cpp
-)
 # Exécutable principal
 add_executable(${PROJECT_NAME}
         ${SRC_DIR}/main.cpp
 )
-compile_options(${PROJECT_NAME})
-
-#######################################################
-
-include(cmake/catch2.cmake)
-
 target_sources(${PROJECT_NAME}
         PUBLIC
         FILE_SET CXX_MODULES
         FILES
-        ${PROJECT_FILES}
+        ${SRC_DIR}/exo1.cppm
 )
+compile_options(${PROJECT_NAME})
 
-# Exécutable pour les tests unitaires
-add_executable(tests ${TEST_FILES})
+# Exécutable et liste des fichiers sources des tests unitaires
+add_executable(tests ${TEST_FILES}
+        ${TESTS_DIR}/exo1.cpp
+)
 target_sources(tests
         PUBLIC
         FILE_SET CXX_MODULES
         FILES
-        ${PROJECT_FILES}
+        ${SRC_DIR}/exo1.cppm
 )
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+#######################################################
 
-# Configuration automatique pour CTest
+# bibliothèque pour les tests unitaires
+include(cmake/catch2.cmake)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain std-cxx-modules)
 include(CTest)
 include(Catch)
 catch_discover_tests(tests)
