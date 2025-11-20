@@ -19,11 +19,11 @@ export namespace exo1 {
         explicit MyClass(const double value): value{value} {}
 
         // Ne pas oublier d'être "const-correct"
-        [[nodiscard]] double GetValue() const { return value; }
+        double GetValue() const { return value; }
 
         void SetValue(const double value) { this->value = value; }
 
-        [[nodiscard]] std::string ToString() const {
+        std::string ToString() const {
             return std::format("{0:.2f}", value);
         }
 
