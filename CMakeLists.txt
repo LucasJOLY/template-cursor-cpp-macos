@@ -36,7 +36,7 @@ target_sources(${PROJECT_NAME}
         PUBLIC
         FILE_SET CXX_MODULES
         FILES
-        ${SRC_DIR}/exo1.cppm
+        ${SRC_DIR}/exo1.ixx
 )
 compile_options(${PROJECT_NAME})
 
@@ -48,7 +48,7 @@ target_sources(tests
         PUBLIC
         FILE_SET CXX_MODULES
         FILES
-        ${SRC_DIR}/exo1.cppm
+        ${SRC_DIR}/exo1.ixx
 )
 #######################################################
 
